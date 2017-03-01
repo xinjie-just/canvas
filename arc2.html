@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>画多个不同形状的圆弧</title>
+	</head>
+	<body>
+		<canvas id="canvas" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换更新的浏览器。
+		</canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			canvas.width = 800;
+			canvas.height = 800;
+			var context = canvas.getContext("2d");
+			
+			// 圆弧从0位置顺时针开始，结束于2π（false是顺时针，true是逆时针，不定义时为false）
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				var arc = context.arc(30 + 70 * i, 40, 20, 0, (i+1)* Math.PI / 5, false);
+				context.stroke();
+			}
+			
+			// 圆弧从0位置逆时针开始，结束于2π
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				var arc = context.arc(30 + 70 * i, 140, 20, 0, (i+1)*Math.PI/5, true);
+				context.stroke();
+			}
+			
+			// 圆弧从0位置顺时针开始，结束于2π
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				var arc = context.arc(30 + 70 * i, 240, 20, 0, (i+1)* Math.PI / 5);
+				context.closePath();
+				context.stroke();
+			}			
+			
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				var arc = context.arc(30 + 70 * i, 340, 20, 0, (i+1)* Math.PI / 5, false);
+				context.fillStyle = "ccc";
+				context.fill();
+				context.stroke();
+			}
+			
+			// 圆弧从0位置逆时针开始，结束于2π
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				var arc = context.arc(30 + 70 * i, 440, 20, 0, (i+1)*Math.PI/5, true);
+				context.fillStyle = "ccc";
+				context.fill();
+				context.stroke();
+			}
+			
+			// 圆弧从0位置顺时针开始，结束于2π
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				var arc = context.arc(30 + 70 * i, 540, 20, 0, (i+1)* Math.PI / 5);
+				context.closePath();
+				context.fillStyle = "ccc";
+				context.fill();
+				context.stroke();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>画多个不同形状的圆弧</title>
+	</head>
+	<body>
+		<canvas id="canvas" style="border: 1px solid #70ad47; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换更新的浏览器。
+		</canvas>
+		<script type="text/javascript">
+			window.onload = function() {
+				var canvas = document.getElementById("canvas"); // 先获取画布
+				canvas.width = 800; // 将画布设置为800px宽
+				canvas.height = 800; // 将画布设置为800px高
+				var context = canvas.getContext("2d"); // 获取画布的上下文环境，进行2d绘图
+				drawRadiusRect(context, 150, 150, 500, 500, 50); // 调用drawRadiusRect()函数
+			}			
+			
+			/*
+			 * 传入六个参数：
+			 * 第一个参数表示格式化上下文，只是为了便于简写
+			 * 第二个参数和第三个参数设置平移的位置，为了把这个圆角矩形放置在画布中心的位置
+			 * 第四个参数和第五个参数分别设置了矩形的宽和高
+			 * 第六个参数设置了圆角的半径
+			 */
+			function drawRadiusRect(ctx, x, y, width, height, r) {
+				ctx.save(); // 保存绘图状态
+				ctx.translate(x, y); // 相对于画布的原点，矩形的原点平移了(x,y)
+				// 将矩形平移后，只剩下四个参数
+				pathRadiusRect(ctx, width, height, r); // 调用pathRadiusRect()函数
+				ctx.strokeStyle = "#ff2d2d"; // 设置绘图的轮廓颜色(设置绘图状态)
+				ctx.stroke();  // 进行绘制
+				ctx.restore(); // 恢复绘图状态
+			}
+			
+			/*
+			 * 分别先算出每一段圆弧的圆心的位置、起点和终点
+			 * 然后再分别计算每一条线段终点的位置
+			 * 最后将这些圆弧和线段链接起来
+			 * */
+			function pathRadiusRect(ctx, w, h, r) {
+				ctx.beginPath(); // 开始绘图的路径
+				ctx.arc(w - r, h - r, r, 0, Math.PI*0.5);
+				ctx.lineTo(r, h);
+				ctx.arc(r, h - r, r, Math.PI*0.5, Math.PI);
+				ctx.lineTo(0, r);
+				ctx.arc(r, r, r, Math.PI, Math.PI*1.5);
+				ctx.lineTo(w - r, 0);
+				ctx.arc(w - r, r, r, Math.PI*1.5, Math.PI*2);
+				ctx.lineTo(w, h - r);
+				ctx.closePath(); // 关闭绘图路径(好进行下一次绘制，使其不收影响)
+			}
+			
+			/*window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				canvas.width = 800;
+				canvas.height = 800;
+				var context = canvas.getContext("2d");context.beginPath();
+				
+				// 使用最原始的方法，分别画出这些线段和弧（缺点是如果要更改半径或尺寸，要更改很多值，不便于复用）
+				context.arc(150, 150, 50, Math.PI, Math.PI*1.5);
+				context.lineTo(650, 100);
+				context.strokeStyle = "#ccc"
+				context.stroke();
+				
+				context.beginPath();
+				context.arc(650, 150, 50, Math.PI*1.5, Math.PI*2);
+				context.lineTo(700, 650);
+				context.strokeStyle = "#ccc"
+				context.stroke();
+				
+				context.beginPath();
+				context.arc(650, 650, 50, 0, Math.PI*0.5);
+				context.lineTo(150, 700);
+				context.strokeStyle = "#ccc"
+				context.stroke();
+				
+				context.beginPath();
+				context.arc(150, 650, 50, Math.PI*0.5, Math.PI);
+				context.lineTo(100, 150);
+				context.strokeStyle = "#ccc"
+				context.stroke();
+			}*/
+		</script>
+	</body>
+</html>

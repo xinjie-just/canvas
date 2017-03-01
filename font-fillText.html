@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			你的浏览器不支持canvas标签，请更换更新的浏览器！
+		</canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			canvas.width = 800;
+			canvas.height = 800;
+			var context = canvas.getContext("2d");
+			context.font = "900 70px Arial";
+			context.fillStyle = "#058";
+			context.fillText("Hello, world!", 100, 200, 400/*optional*/);
+		
+			context.lineWidth = 2;
+			context.strokeStyle = "#058";
+			context.strokeText("Hello, world!", 100, 400, 400/*optional*/);
+		</script>
+	</body>
+</html>

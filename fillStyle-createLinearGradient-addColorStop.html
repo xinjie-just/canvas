@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>画矩形，transform,setTransform变换</title>
+	</head>
+	<body>
+		<canvas id="canvas" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换浏览器。
+		</canvas>
+		<script>
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				canvas.width = 800;
+				canvas.height = 800;
+				var context = canvas.getContext("2d");
+				var lgd = context.createLinearGradient(0, 0, 800, 800);
+				lgd.addColorStop(0.25, "red");
+				lgd.addColorStop(0.5, "orange");
+				lgd.addColorStop(0.75, "yellow");
+				lgd.addColorStop(1, "green");
+				context.fillStyle = lgd;
+				context.fillRect(0, 0, 800, 800);
+			}
+		</script>
+	</body>
+</html>
