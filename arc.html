@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800" style="border: 1px solid #999; margin: 50px auto; display: block;"></canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			if (canvas.getContext("2d")) {
+				var context = canvas.getContext("2d");
+			} else{
+				alert("您的浏览器不支持canvas标签，请更换更新的浏览器。");
+			}
+			//下面画圆弧
+			context.beginPath();
+			var arc = context.arc(100, 100, 100, 0, 1.5*Math.PI, false);
+			context.closePath();
+			context.stroke();
+		</script>
+	</body>
+</html>

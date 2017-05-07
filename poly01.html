@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>箭头</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换更新的浏览器。
+		</canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.moveTo(100,350);
+			context.lineTo(350,350);
+			context.lineTo(350,250);
+			context.lineTo(500,400);
+			context.lineTo(350,550);
+			context.lineTo(350,450);
+			context.lineTo(100,450);
+			//context.lineTo(100,350);
+			context.closePath();
+			
+			context.fillStyle = "#f00";
+			context.lineWidth = 15;
+			context.strokeStyle = "#0f0";
+			context.fill();	
+			context.stroke();		
+			
+		</script>
+	</body>
+</html>

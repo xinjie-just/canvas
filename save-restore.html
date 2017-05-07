@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>矩形,save 和 restore 的用法</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换更新的浏览器。
+		</canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			
+			context.save();
+			context.fillStyle = "#f00";
+			context.translate(100, 100);
+			context.fillRect(0, 0, 400, 400);
+			//context.translate(-100, -100);
+			context.restore();
+			
+			context.save();
+			context.fillStyle = "#0f0";
+			context.translate(300, 300);
+			context.fillRect(0, 0, 400, 400);
+			//context.translate(-300, -300);
+			context.restore();
+			
+		</script>
+	</body>
+</html>

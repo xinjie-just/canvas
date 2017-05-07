@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>画五角星，设置lineJoin值</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换浏览器。
+		</canvas>
+		<script>						
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				/*参数的意思分别为"上下文环境",
+				 * "五角星外面五个点所在圆的半径","五角星里面五个点所在圆的半径",
+				 * "五角星两个圆的圆心在画布中的偏移量横坐标(为正)","五角星两个圆的圆心在画布中的偏移量纵坐标(为负)",
+				 * "五角星的旋转角度(顺时针，即为负)"
+				 * */
+				drawStar(context, 300, 10, 400, 400, 72);
+			}
+			function drawStar(ctx, R, r, x, y, rot) {
+				// 五角星路径的开始
+				ctx.beginPath();
+				for (var i = 0; i < 5; i++) {
+					/* 以i=0，即第一个点为例：
+					 * 大圆的点相对于正x轴偏移了18deg，Math.sin和Math.cos计算的是弧度，所以要将角度转换为弧度。
+					 * 再分别乘以R，计算出相对于画布左上角位置的x和y坐标，
+					 * 再分别加上x,和y作为距离画布左上角的偏移
+					 * */
+					ctx.lineTo(Math.cos((18 + 72 * i - rot) / 180 * Math.PI) * R + x,
+							   -Math.sin((18 + 72 * i - rot) / 180 * Math.PI) * R + y);
+					ctx.lineTo(Math.cos((54 + 72 * i - rot) / 180 * Math.PI) * r + x,
+							   -Math.sin((54 + 72 * i - rot) / 180 * Math.PI) * r + y);							   
+					
+				}
+				// 闭合五角星路径
+				ctx.closePath();
+				// 为五角星路径设置宽和颜色
+				ctx.lineWidth = 15;
+				ctx.lineJoin = "miter";
+				ctx.miterLimit = 10;
+				ctx.strokeStyle = "#000";
+				// 绘制五角星
+				ctx.stroke();
+			}
+		</script>
+	</body>
+</html>

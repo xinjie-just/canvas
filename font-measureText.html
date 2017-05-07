@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>获取文本的宽度</title>
+	</head>
+	<body>
+		<canvas id="canvas" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			你的浏览器不支持canvas标签，请更换更新的浏览器！
+		</canvas>
+		<script type="text/javascript">
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				canvas.width = 800;
+				canvas.height = 800;
+				var context = canvas.getContext("2d");
+				context.font = "700 20px Arial";
+				context.fillStyle = "#058";
+				context.fillText("Hello, world!", 300, 200);
+				
+				var textWidth = context.measureText("Hello, world!").width;
+				context.fillText("'Hello, world!'的宽度为：" + textWidth + "px", 200, 500);
+			}
+			console.log(document.title);
+		</script>
+	</body>
+</html>

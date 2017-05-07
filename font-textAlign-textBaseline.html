@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>文本排列(水平和竖直方向)</title>
+	</head>
+	<body>
+		<canvas id="canvas" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			你的浏览器不支持canvas标签，请更换更新的浏览器！
+		</canvas>
+		<script type="text/javascript">
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				canvas.width = 800;
+				canvas.height = 800;
+				var context = canvas.getContext("2d");
+				context.font = "900 70px Arial";
+				context.fillStyle = "#058";
+				context.textAlign = "center";
+				context.textBaseline = "middle";
+				context.fillText("Hello, world!", canvas.width/2, canvas.height/2);
+				
+				// 下面绘制基准线作为参考，测试文本是否处于水平和竖直居中
+				context.beginPath();
+				context.moveTo(0, canvas.height/2);
+				context.lineTo(canvas.width, canvas.height/2);
+				context.moveTo(canvas.width/2, 0);
+				context.lineTo(canvas.width/2, canvas.height);
+				context.closePath();
+				context.strokeStyle = "#058";
+				context.lineWidth = 1;
+				context.stroke();
+			}
+			
+		</script>
+	</body>
+</html>

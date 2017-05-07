@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>矩形</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换更新的浏览器。
+		</canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");			
+			
+			// 画矩形，参数为矩形左上角的点x,y，和矩形的宽(width)，高(height)，填充的颜色，边框的颜色
+			function drawRect(x, y, width, height, fillColor, lineWidth, strokeColor) {
+				context.beginPath();
+				context.moveTo(x, y);
+				context.lineTo(x + width, y);
+				context.lineTo(x + width, y + height);
+				context.lineTo(x, y + height);
+				context.closePath();				
+				//对状态的绘制，将所有的状态放在一起
+				context.fillStyle = fillColor;
+				context.lineWidth = lineWidth;
+				context.strokeStyle = strokeColor;
+				//将所有的状态放在一起
+				context.fill();	
+				context.stroke();				
+			}
+			drawRect(300, 300, 300, 300, "#f00", 15, "#0f0");
+			
+		</script>
+	</body>
+</html>

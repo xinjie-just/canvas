@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>画星空图</title>
+	</head>
+	<body>
+		<canvas id="canvas" style="border: 1px solid #999; margin: 50px auto; display: block;">
+			您的浏览器不支持canvas标签，请更换浏览器。
+		</canvas>
+		<script>						
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				canvas.width = 1200;
+				canvas.height = 800;
+				var context = canvas.getContext("2d");
+				var gradientStyle = context.createLinearGradient(0, 0, 0, canvas.height);
+				gradientStyle.addColorStop(0, "black");
+				gradientStyle.addColorStop(1, "#394271")
+				context.fillStyle = gradientStyle;
+				context.fillRect(0, 0 , canvas.width, canvas.height);
+				for (var i = 0; i < 200; i++) {
+					// 取 10 ~ 20 之间的随机数，作为每一刻星星外边点的半径
+					var R = Math.random() * 10 + 5;  // 5 ~ 15
+					// 取 760 ~ 780 之间的随机数作为星星圆心所在的位置
+					var x = Math.random() * (canvas.width - R * 2) + R;
+					var y = Math.random() * (canvas.height - R * 2) + R - 300;
+					// 取 0 ~ 360 之间的随机数，作为星星旋转的值
+					var a = Math.random() * 360;
+					drawStar(context, R, R / 2.0, x, y, a);
+				}
+			}
+			function drawStar(ctx, R, r, x, y, rot) {
+				ctx.beginPath();
+				for (var i = 0; i < 5; i++) {
+					ctx.lineTo(Math.cos((18 + 72 * i - rot) / 180 * Math.PI) * R + x,
+							   -Math.sin((18 + 72 * i - rot) / 180 * Math.PI) * R + y);
+					ctx.lineTo(Math.cos((54 + 72 * i - rot) / 180 * Math.PI) * r + x,
+							   -Math.sin((54 + 72 * i - rot) / 180 * Math.PI) * r + y);							   
+					
+				}
+				ctx.closePath();				
+			
+				ctx.lineWidth = 2;
+				ctx.lineJoin = "round";
+				ctx.strokeStyle = "#fff";
+				ctx.fillStyle = "#ffe";
+				
+				ctx.fill();
+				ctx.stroke();
+			}
+		</script>
+	</body>
+</html>
